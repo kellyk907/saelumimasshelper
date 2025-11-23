@@ -155,7 +155,7 @@ export default function App() {
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
-          <img src="/icons/dragon.png" className="w-64 mx-auto animate-pulse" alt="Breathing dragon" />
+          <img src="/icons/dragon.gif" className="w-64 mx-auto" alt="Breathing dragon" />
           <p className="text-5xl font-bold text-black mt-10">
             {t("Breathe in… hold… breathe out", "Inhala… retén… exhala", "Inspire… retiens… expire", "Inspire… segure… expire", "吸气…屏住…呼气", "吸氣…屏住…呼氣")}
           </p>

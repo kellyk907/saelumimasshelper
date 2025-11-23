@@ -80,6 +80,19 @@ export default function App() {
           ))}
         </div>
       </header>
+      
+      <style jsx>{`
+  .big-icon img {
+    width: 280px !important;
+    height: 280px !important;
+    object-fit: contain;
+  }
+  .huge-icon img {
+    width: 380px !important;
+    height: 380px !important;
+    object-fit: contain;
+  }
+`}</style>
 
       {/* Home Screen */}
       {screen === "home" && (
@@ -94,7 +107,7 @@ export default function App() {
               }}
               className="bg-white rounded-3xl p-10 shadow-2xl hover:scale-105 transition"
             >
-              <img src={`/icons/${b.icon}`} className="w-48 mx-auto mb-6" alt="" />   
+              <img src={`/icons/${b.icon}`} className="huge-icon" alt="" />
               <p className="text-2xl font-bold text-black">{b.label}</p>
             </button>
           ))}
@@ -108,7 +121,7 @@ export default function App() {
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
           <div className="bg-white rounded-3xl p-12 shadow-2xl">
-          <img src={`/icons/${w.en}.png`} className="w-32 mb-4" alt={w.en} />   ← change w-24 → w-32
+        <img src={`/icons/${massSteps[currentStep].icon}`} className="big-icon" alt="" />
             <h2 className="text-4xl font-bold text-black mb-12">{massSteps[currentStep].name}</h2>
             {currentStep < massSteps.length - 1 ? (
               <button
@@ -141,7 +154,7 @@ export default function App() {
                 key={i}
                 className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center"
               >
-               <img src={`/icons/${w.en}.png`} className="w-32 mb-4" alt={w.en} />   ← change w-24 → w-32
+               <img src={`/icons/${w.en}.png`} className="huge-icon" alt={w.en} />
                 <span className="text-xl font-bold text-black">{w[lang] || w.en}</span>
               </button>
             ))}
@@ -168,6 +181,7 @@ export default function App() {
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
+          <img src={`/icons/${b.icon}`} className="huge-icon" alt="" />
           <img src={`/icons/${massSteps[currentStep].icon}`} className="w-80 mx-auto mb-8" alt="" />
           <div className="flex justify-center gap-4 mt-8">
             {[0,1,2,3,4,5].map((i) => (

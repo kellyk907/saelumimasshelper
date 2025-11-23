@@ -63,6 +63,21 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-100 to-blue-200 p-6 pb-24">
+     <style>{`
+      .force-big img { 
+        min-width: 280px !important; 
+        min-height: 280px !important; 
+        width: auto !important; 
+        height: auto !important; 
+        object-fit: contain !important; 
+      }
+      @media (min-width: 640px) { 
+        .force-big img { 
+          min-width: 340px !important; 
+          min-height: 340px !important; 
+        } 
+      }
+    `}</style>
       {/* Header */}
       <header className="text-center py-6">
         <h1 className="text-5xl font-bold text-black drop-shadow-2xl mb-6">Lumi's Mass Helper</h1>
@@ -141,8 +156,17 @@ export default function App() {
                 key={i}
                 className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center"
               >
-          <img src={`/icons/${w.en}.png`} className="w-48 h-48 max-w-full object-contain mx-auto mb-4" alt={w.en} />
-                <span className="text-xl font-bold text-black">{w[lang] || w.en}</span>
+         <img 
+  src={`/icons/${
+    w.en === "all done" ? "alldone" :
+    w.en === "thank you" ? "thankyou" :
+    w.en === "i love you" ? "iloveyou" :
+    w.en === "too loud" ? "tooloud" :
+    w.en
+  }.png`} 
+  className="w-64 h-64 object-contain mx-auto mb-4" 
+  alt={w.en} 
+/>
               </button>
             ))}
           </div>

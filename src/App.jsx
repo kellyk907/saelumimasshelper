@@ -145,33 +145,32 @@ export default function App() {
       )}
 
       {/* AAC Screen */}
-      {screen === "aac" && (
-        <div className="max-w-5xl mx-auto mt-12">
-          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
-            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
+    {screen === "aac" && (
+  <div className="max-w-5xl mx-auto mt-12">
+    <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
+      ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
+    </button>
+    <div className="grid grid-cols-4 gap-6">
+      {aacWords.map((w, i) => {
+        const filename = w.en.replace(/ /g, '');  // "all done" → "alldone", etc. — matches your uploads
+        return (
+          <button
+            key={i}
+            className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center min-h-[280px]"
+          >
+            <img 
+              src={`/icons/${filename}.png`} 
+              className="w-64 h-64 min-w-[250px] max-w-full object-contain mx-auto mb-4 flex-shrink-0" 
+              alt={w[lang] || w.en} 
+              onError={(e) => e.target.style.display = 'none'}  // Hides broken ones cleanly
+            />
+            <span className="text-xl font-bold text-black text-center">{w[lang] || w.en}</span>
           </button>
-          <div className="grid grid-cols-4 gap-6">
-            {aacWords.map((w, i) => (
-              <button
-                key={i}
-                className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center"
-              >
-         <img 
-  src={`/icons/${
-    w.en === "all done" ? "alldone" :
-    w.en === "thank you" ? "thankyou" :
-    w.en === "i love you" ? "iloveyou" :
-    w.en === "too loud" ? "tooloud" :
-    w.en
-  }.png`} 
-  className="w-64 h-64 object-contain mx-auto mb-4" 
-  alt={w.en} 
-/>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+        );
+      })}
+    </div>
+  </div>
+)}
 
       {/* Calm Down Screen */}
       {screen === "calm" && (

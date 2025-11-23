@@ -57,18 +57,20 @@ export default function App() {
       {/* Mass Schedule – unchanged */}
 
       {/* AAC – NOW TRANSLATES */}
-         <button onClick={() => setScreen("home")} className="mt-12 block mx-auto text-2xl text-black underline">
-            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
-          </button>
       {screen === "aac" && (
         <div className="max-w-5xl mx-auto mt-12">
+          {/* ← Home button now correctly at the top */}
+          <button onClick={() => setScreen("home")} className="mb-8 text-3xl text-black font-bold underline">
+            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
+          </button>
+
           <div className="grid grid-cols-4 gap-6">
             {aacWords.map((w, i) => (
               <button
                 key={i}
                 className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center"
               >
-                <img src={`/icons/${Object.values(w)[0]}.png`} className="w-24 mb-4" alt="" />
+                <img src={`/icons/${w.en}.png`} className="w-24 mb-4" alt={w.en} />
                 <span className="text-xl font-bold text-black">
                   {w[lang] || w.en}
                 </span>

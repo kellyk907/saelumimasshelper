@@ -69,7 +69,7 @@ export default function App() {
                 className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center"
               >
                 <img src={`/icons/${Object.values(w)[0]}.png`} className="w-24 mb-4" alt="" />
-                <span className="text-xl font-bold text-text-black">
+                <span className="text-xl font-bold text-black">
                   {w[lang] || w.en}
                 </span>
               </button>

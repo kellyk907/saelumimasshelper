@@ -94,7 +94,7 @@ export default function App() {
               }}
               className="bg-white rounded-3xl p-10 shadow-2xl hover:scale-105 transition"
             >
-              <img src={`/icons/${b.icon}`} className="w-32 mx-auto mb-6" alt="" />
+              <img src={`/icons/${b.icon}`} className="w-48 mx-auto mb-6" alt="" />   
               <p className="text-2xl font-bold text-black">{b.label}</p>
             </button>
           ))}
@@ -108,7 +108,7 @@ export default function App() {
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
           <div className="bg-white rounded-3xl p-12 shadow-2xl">
-            <img src={`/icons/${massSteps[currentStep].icon}`} className="w-48 mx-auto mb-8" alt="" />
+          <img src={`/icons/${w.en}.png`} className="w-32 mb-4" alt={w.en} />   ← change w-24 → w-32
             <h2 className="text-4xl font-bold text-black mb-12">{massSteps[currentStep].name}</h2>
             {currentStep < massSteps.length - 1 ? (
               <button
@@ -141,7 +141,7 @@ export default function App() {
                 key={i}
                 className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center"
               >
-                <img src={`/icons/${w.en}.png`} className="w-24 mb-4" alt={w.en} />
+               <img src={`/icons/${w.en}.png`} className="w-32 mb-4" alt={w.en} />   ← change w-24 → w-32
                 <span className="text-xl font-bold text-black">{w[lang] || w.en}</span>
               </button>
             ))}

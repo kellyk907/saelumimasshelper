@@ -145,41 +145,40 @@ export default function App() {
       )}
 
       {/* AAC Screen */}
-{/* AAC Screen */}
-{screen === "aac" && (
-  <div className="max-w-5xl mx-auto mt-12">
-    <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
-      ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
-    </button>
-
-    <div className="grid grid-cols-4 gap-6">
-      {aacWords.map((w, i) => {
-        const filename = 
-          w.en === "all done" ? "alldone" :
-          w.en === "thank you" ? "thankyou" :
-          w.en === "i love you" ? "iloveyou" :
-          w.en === "too loud" ? "tooloud" :
-          w.en;
-
-        return (
-          <button
-            key={i}
-            className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center justify-between min-h-48"
-          >
-            <img
-              src={`/icons/${filename}.png`}
-              className="force-big w-64 h-64 object-contain mb-3"
-              alt={w.en}
-            />
-            <span className="text-xl font-bold text-black mt-auto">
-              {w[lang] || w.en}
-            </span>
+      {screen === "aac" && (
+        <div className="max-w-5xl mx-auto mt-12">
+          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
+            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
-        );
-      })}
-    </div>
-  </div>
-)}
+
+          <div className="grid grid-cols-4 gap-6">
+            {aacWords.map((w, i) => {
+              const filename = 
+                w.en === "all done" ? "alldone" :
+                w.en === "thank you" ? "thankyou" :
+                w.en === "i love you" ? "iloveyou" :
+                w.en === "too loud" ? "tooloud" :
+                w.en;
+
+              return (
+                <button
+                  key={i}
+                  className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center justify-between min-h-48"
+                >
+                  <img
+                    src={`/icons/${filename}.png`}
+                    className="force-big w-64 h-64 object-contain mb-3"
+                    alt={w.en}
+                  />
+                  <span className="text-xl font-bold text-black mt-auto">
+                    {w[lang] || w.en}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Calm Down Screen */}
       {screen === "calm" && (

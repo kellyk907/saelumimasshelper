@@ -162,7 +162,7 @@ export default function App() {
         </div>
       )}
 
-      {/* Mass Story Screen */}
+      {/* Mass Story Screen need to make and add images for this from saelumi  */}
       {screen === "story" && (
         <div className="max-w-2xl mx-auto mt-12 text-center">
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">

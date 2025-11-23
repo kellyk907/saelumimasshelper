@@ -66,13 +66,13 @@ export default function App() {
                 className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center"
               >
                 <img src={`/icons/${Object.values(w)[0]}.png`} className="w-24 mb-4" alt="" />
-                <span className="text-xl font-bold text-gray-800">
+                <span className="text-xl font-bold text-text-black">
                   {w[lang] || w.en}
                 </span>
               </button>
             ))}
           </div>
-          <button onClick={() => setScreen("home")} className="mt-12 block mx-auto text-2xl text-white underline">
+          <button onClick={() => setScreen("home")} className="mt-12 block mx-auto text-2xl text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
         </div>
@@ -82,7 +82,7 @@ export default function App() {
       {screen === "calm" && (
         <div className="text-center mt-20">
           <img src="/icons/dragon.png" className={`w-64 mx-auto ${breathing ? "animate-pulse" : ""}`} alt="dragon" />
-          <p className="text-5xl text-white mt-10 font-bold">
+          <p className="text-5xl text-black mt-10 font-bold">
             {breathing ? t("Breathe in… 4", "Inhala… 4", "Inspire… 4", "Inspire… 4", "吸氣…4", "吸氣…4") : t("Tap to breathe", "Toca para respirar", "Touche pour respirer", "Toque para respirar", "點擊呼吸", "點擊呼吸")}
           </p>
           <button
@@ -91,7 +91,7 @@ export default function App() {
           >
             {t("Start Breathing", "Empezar", "Commencer", "Começar", "開始呼吸", "開始呼吸")}
           </button>
-          <button onClick={() => setScreen("home")} className="mt-20 text-2xl text-white underline">
+          <button onClick={() => setScreen("home")} className="mt-20 text-2xl text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
         </div>
@@ -106,14 +106,14 @@ export default function App() {
               <button key={i} onClick={() => setSlide(i)} className={`w-4 h-4 rounded-full ${i === slide ? "bg-white" : "bg-white/50"}`} />
             ))}
           </div>
-          <button onClick={() => setScreen("home")} className="mt-12 text-2xl text-white underline">
+          <button onClick={() => setScreen("home")} className="mt-12 text-2xl text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
         </div>
       )}
 
       {/* Footer */}
-      <footer className="text-center text-white mt-20 text-lg opacity-80">
+      <footer className="text-center text-black mt-20 text-lg opacity-80">
         Made with love by Kelly Kroeper · UX Researcher
       </footer>
     </div>

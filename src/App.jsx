@@ -80,19 +80,6 @@ export default function App() {
           ))}
         </div>
       </header>
-      
-      <style jsx>{`
-  .big-icon img {
-    width: 280px !important;
-    height: 280px !important;
-    object-fit: contain;
-  }
-  .huge-icon img {
-    width: 380px !important;
-    height: 380px !important;
-    object-fit: contain;
-  }
-`}</style>
 
       {/* Home Screen */}
       {screen === "home" && (
@@ -107,7 +94,11 @@ export default function App() {
               }}
               className="bg-white rounded-3xl p-10 shadow-2xl hover:scale-105 transition"
             >
-              <img src={`/icons/${b.icon}`} className="huge-icon" alt="" />
+             <img 
+  src={`/icons/${b.icon}`} 
+  className="w-80 h-80 object-contain mx-auto mb-6" 
+  alt="" 
+/>
               <p className="text-2xl font-bold text-black">{b.label}</p>
             </button>
           ))}
@@ -154,7 +145,11 @@ export default function App() {
                 key={i}
                 className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center"
               >
-               <img src={`/icons/${w.en}.png`} className="huge-icon" alt={w.en} />
+              <img 
+  src={`/icons/${w.en}.png`} 
+  className="w-64 h-64 object-contain mx-auto mb-4" 
+  alt={w.en} 
+/>
                 <span className="text-xl font-bold text-black">{w[lang] || w.en}</span>
               </button>
             ))}
@@ -168,7 +163,11 @@ export default function App() {
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
-          <img src="/icons/dragon.gif" className="w-64 mx-auto" alt="Breathing dragon" />
+          <img 
+  src="/icons/dragon.gif" 
+  className="w-96 h-96 object-contain mx-auto mt-8" 
+  alt="Breathing dragon" 
+/>
           <p className="text-5xl font-bold text-black mt-10">
             {t("Breathe in… hold… breathe out", "Inhala… retén… exhala", "Inspire… retiens… expire", "Inspire… segure… expire", "吸气…屏住…呼气", "吸氣…屏住…呼氣")}
           </p>
@@ -182,7 +181,11 @@ export default function App() {
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
           <img src={`/icons/${b.icon}`} className="huge-icon" alt="" />
-          <img src={`/icons/${massSteps[currentStep].icon}`} className="w-80 mx-auto mb-8" alt="" />
+         <img 
+  src={`/icons/${massSteps[currentStep].icon}`} 
+  className="w-96 h-96 object-contain mx-auto mb-8" 
+  alt="" 
+/>
           <div className="flex justify-center gap-4 mt-8">
             {[0,1,2,3,4,5].map((i) => (
               <button

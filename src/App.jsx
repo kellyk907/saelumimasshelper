@@ -154,10 +154,7 @@ export default function App() {
       {aacWords.map((w, i) => {
         const filename = w.en.replace(/ /g, '');  // "all done" → "alldone", etc. — matches your uploads
         return (
-          <button
-            key={i}
-            className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center min-h-[280px]"
-          >
+      className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center justify-between min-h-48"
             <img 
               src={`/icons/${filename}.png`} 
               className="w-64 h-64 min-w-[250px] max-w-full object-contain mx-auto mb-4 flex-shrink-0" 

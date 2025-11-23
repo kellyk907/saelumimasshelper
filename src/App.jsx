@@ -94,7 +94,7 @@ export default function App() {
               }}
               className="bg-white rounded-3xl p-10 shadow-2xl hover:scale-105 transition"
             >
-         <img src={`/icons/${b.icon}`} className="w-full max-w-md mx-auto mb-6" alt="" />
+         <img src={`/icons/${b.icon}`} className="w-64 h-64 max-w-full object-contain mx-auto mb-6" alt="" />
               <p className="text-2xl font-bold text-black">{b.label}</p>
             </button>
           ))}
@@ -108,7 +108,7 @@ export default function App() {
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
           <div className="bg-white rounded-3xl p-12 shadow-2xl">
-      <img src={`/icons/${massSteps[currentStep].icon}`} className="w-full max-w-2xl mx-auto mb-8" alt="" />
+     <img src={`/icons/${massSteps[currentStep].icon}`} className="w-80 h-80 max-w-lg object-contain mx-auto mb-8" alt="" />
             <h2 className="text-4xl font-bold text-black mb-12">{massSteps[currentStep].name}</h2>
             {currentStep < massSteps.length - 1 ? (
               <button
@@ -141,7 +141,7 @@ export default function App() {
                 key={i}
                 className="bg-white rounded-3xl p-8 shadow-xl hover:scale-105 transition aspect-square flex flex-col items-center justify-center"
               >
-           <img src={`/icons/${w.en}.png`} className="w-full max-w-xs mx-auto mb-4" alt={w.en} />
+          <img src={`/icons/${w.en}.png`} className="w-48 h-48 max-w-full object-contain mx-auto mb-4" alt={w.en} />
                 <span className="text-xl font-bold text-black">{w[lang] || w.en}</span>
               </button>
             ))}
@@ -155,7 +155,7 @@ export default function App() {
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
-         <img src="/icons/dragon.gif" className="w-full max-w-2xl mx-auto mt-12" alt="Breathing dragon" />
+         <img src="/icons/dragon.gif" className="w-72 h-72 max-w-md object-contain mx-auto mt-8" alt="Breathing dragon" />
           <p className="text-5xl font-bold text-black mt-10">
             {t("Breathe in… hold… breathe out", "Inhala… retén… exhala", "Inspire… retiens… expire", "Inspire… segure… expire", "吸气…屏住…呼气", "吸氣…屏住…呼氣")}
           </p>

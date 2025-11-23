@@ -168,7 +168,7 @@ export default function App() {
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
-          <img src={`/icons/slide${slide + 1}.png`} className="w-full rounded-3xl shadow-2xl" alt="Story slide" />
+          <img src={`/icons/${massSteps[currentStep].icon}`} className="w-80 mx-auto mb-8" alt="" />
           <div className="flex justify-center gap-4 mt-8">
             {[0,1,2,3,4,5].map((i) => (
               <button

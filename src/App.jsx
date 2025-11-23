@@ -65,14 +65,14 @@ export default function App() {
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-100 to-blue-200 p-6 pb-24">
       {/* Header */}
       <header className="text-center py-6">
-        <h1 className="text-5xl font-bold text-white drop-shadow-2xl mb-6">Lumi's Mass Helper</h1>
+        <h1 className="text-5xl font-bold text-black drop-shadow-2xl mb-6">Lumi's Mass Helper</h1>
         <div className="flex flex-wrap justify-center gap-3">
           {languages.map((l) => (
             <button
               key={l.code}
               onClick={() => setLang(l.code)}
               className={`px-5 py-2 rounded-full text-lg font-medium transition ${
-                lang === l.code ? "bg-white text-purple-700 shadow-lg" : "bg-white/40 text-white"
+                lang === l.code ? "bg-white text-purple-700 shadow-lg" : "bg-white/40 text-black"
               }`}
             >
               {l.name}
@@ -113,14 +113,14 @@ export default function App() {
             {currentStep < massSteps.length - 1 ? (
               <button
                 onClick={() => setCurrentStep((s) => s + 1)}
-                className="bg-green-500 text-white px-16 py-8 rounded-full text-4xl shadow-lg"
+                className="bg-green-500 text-black px-16 py-8 rounded-full text-4xl shadow-lg"
               >
                 {t("Next →", "Siguiente →", "Suivant →", "Próximo →", "下一个 →", "下一個 →")}
               </button>
             ) : (
               <button
                 onClick={() => setScreen("home")}
-                className="bg-purple-600 text-white px-16 py-8 rounded-full text-4xl shadow-lg"
+                className="bg-purple-600 text-black px-16 py-8 rounded-full text-4xl shadow-lg"
               >
                 {t("All Done!", "¡Terminamos!", "C'est fini !", "Tudo pronto!", "完成了！", "完成咗！")}
               </button>
@@ -156,7 +156,7 @@ export default function App() {
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
           <img src="/icons/dragon.png" className="w-64 mx-auto animate-pulse" alt="Breathing dragon" />
-          <p className="text-5xl font-bold text-white mt-10">
+          <p className="text-5xl font-bold text-black mt-10">
             {t("Breathe in… hold… breathe out", "Inhala… retén… exhala", "Inspire… retiens… expire", "Inspire… segure… expire", "吸气…屏住…呼气", "吸氣…屏住…呼氣")}
           </p>
         </div>
@@ -181,7 +181,7 @@ export default function App() {
         </div>
       )}
 
-      <footer className="text-center text-white mt-20 text-lg opacity-80">
+      <footer className="text-center text-black mt-20 text-lg opacity-80">
         Made with love by Kelly Kroeper · UX Researcher
       </footer>
     </div>

@@ -57,6 +57,9 @@ export default function App() {
       {/* Mass Schedule – unchanged */}
 
       {/* AAC – NOW TRANSLATES */}
+         <button onClick={() => setScreen("home")} className="mt-12 block mx-auto text-2xl text-black underline">
+            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
+          </button>
       {screen === "aac" && (
         <div className="max-w-5xl mx-auto mt-12">
           <div className="grid grid-cols-4 gap-6">
@@ -72,15 +75,15 @@ export default function App() {
               </button>
             ))}
           </div>
-          <button onClick={() => setScreen("home")} className="mt-12 block mx-auto text-2xl text-black underline">
-            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
-          </button>
         </div>
       )}
 
       {/* Calm Down – REAL BREATHING DRAGON */}
       {screen === "calm" && (
         <div className="text-center mt-20">
+           <button onClick={() => setScreen("home")} className="mt-20 text-2xl text-black underline">
+            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
+          </button>
           <img src="/icons/dragon.png" className={`w-64 mx-auto ${breathing ? "animate-pulse" : ""}`} alt="dragon" />
           <p className="text-5xl text-black mt-10 font-bold">
             {breathing ? t("Breathe in… 4", "Inhala… 4", "Inspire… 4", "Inspire… 4", "吸氣…4", "吸氣…4") : t("Tap to breathe", "Toca para respirar", "Touche pour respirer", "Toque para respirar", "點擊呼吸", "點擊呼吸")}
@@ -91,24 +94,23 @@ export default function App() {
           >
             {t("Start Breathing", "Empezar", "Commencer", "Começar", "開始呼吸", "開始呼吸")}
           </button>
-          <button onClick={() => setScreen("home")} className="mt-20 text-2xl text-black underline">
-            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
-          </button>
+         
         </div>
       )}
 
       {/* Mass Story – 6-slide social story */}
       {screen === "story" && (
         <div className="max-w-2xl mx-auto text-center mt-12">
+           <button onClick={() => setScreen("home")} className="mt-12 text-2xl text-black underline">
+            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
+          </button>
           <img src={`/icons/slide${slide + 1}.png`} className="w-full rounded-3xl shadow-2xl" alt="story slide" />
           <div className="flex justify-center gap-4 mt-8">
             {[...Array(6)].map((_, i) => (
               <button key={i} onClick={() => setSlide(i)} className={`w-4 h-4 rounded-full ${i === slide ? "bg-white" : "bg-white/50"}`} />
             ))}
           </div>
-          <button onClick={() => setScreen("home")} className="mt-12 text-2xl text-black underline">
-            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
-          </button>
+         
         </div>
       )}
 

@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState } from "react";
 
 export default function App() {
@@ -22,14 +21,14 @@ export default function App() {
   ];
 
   const massSteps = [
-    { name: t("We arrive at church", "Llegamos a la iglesia", "Nous arrivons à l'église", "Chegamos à igreja", "我们到达教堂", "我們到達教堂"), icon: "church.png" },
-    { name: t("Sign of the Cross", "Señal de la cruz", "Signe de croix", "Sinal da cruz", "画十字圣号", "畫十字聖號"), icon: "cross.png" },
-    { name: t("Readings", "Lecturas", "Lectures", "Leituras", "读经", "讀經"), icon: "book.png" },
-    { name: t("Homily", "Homilía", "Homélie", "Homilia", "讲道", "講道"), icon: "priest.png" },
-    { name: t("Offertory", "Ofertorio", "Offertoire", "Ofertório", "奉献礼", "奉獻禮"), icon: "bread.png" },
-    { name: t("Consecration", "Consagración", "Consécration", "Consagração", "成圣体", "成聖體"), icon: "chalice.png" },
-    { name: t("Communion", "Comunión", "Communion", "Comunhão", "圣体圣事", "聖體聖事"), icon: "host.png" },
-    { name: t("Go in peace!", "¡Vayan en paz!", "Allez en paix !", "Ide em paz!", "平安去吧！", "平安去吧！"), icon: "peace.png" },
+    { en: "We arrive at church", icon: "church.png" },
+    { en: "Sign of the Cross", icon: "cross.png" },
+    { en: "Readings", icon: "book.png" },
+    { en: "Homily", icon: "priest.png" },
+    { en: "Offertory", icon: "bread.png" },
+    { en: "Consecration", icon: "chalice.png" },
+    { en: "Communion", icon: "host.png" },
+    { en: "Go in peace!", icon: "peace.png" },
   ];
 
   const homeButtons = [
@@ -62,180 +61,120 @@ export default function App() {
     { en: "no", es: "no", fr: "non", pt: "não", zh: "不", yue: "唔係" },
   ];
 
+  const filename = (word) =>
+    word === "all done" ? "alldone" :
+    word === "thank you" ? "thankyou" :
+    word === "i love you" ? "iloveyou" :
+    word === "too loud" ? "tooloud" : word;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-100 to-blue-200 p-6 pb-24">
       <style>{`
-        .force-big img {
-          min-width: 220px !important;
-          min-height: 220px !important;
-          width: 100% !important;
-          height: auto !important;
-          object-fit: contain !important;
-        }
-        @media (min-width: 640px) {
-          .force-big img { min-width: 280px !important; min-height: 280px !important; }
-        }
-        @media (min-width: 1024px) {
-          .force-big img { min-width: 340px !important; min-height: 340px !important; }
-        }
-        .home-button { min-height: 280px; }
-        @media (max-width: 640px) { .home-button { min-height: 220px; } }
+        .big img { min-width: 220px; width: 100%; height: auto; object-fit: contain; }
+        @media (min-width: 640px) { .big img { min-width: 280px; } }
+        @media (min-width: 1024px) { .big img { min-width: 340px; } }
+        .home-btn { min-height: 240px; }
+        @media (max-width: 640px) { .home-btn { min-height: 200px; } }
       `}</style>
 
-      {/* Header */}
+      {/* Header + Language Buttons */}
       <header className="text-center py-6">
         <h1 className="text-5xl font-bold text-white drop-shadow-2xl mb-6">Lumi's Mass Helper</h1>
         <div className="flex flex-wrap justify-center gap-3">
-          {languages.map((l) => (
-            <button
-              key={l.code}
-              onClick={() => setLang(l.code)}
-              className={`px-5 py-2 rounded-full text-lg font-medium transition ${
-                lang === l.code ? "bg-white text-purple-700 shadow-lg" : "bg-white/40 text-white"
-              }`}
-            >
+          {languages.map(l => (
+            <button key={l.code} onClick={() => setLang(l.code)}
+              className={`px-5 py-2 rounded-full text-lg font-medium transition ${lang === l.code ? "bg-white text-purple-700 shadow-lg" : "bg-white/40 text-white"}`}>
               {l.name}
             </button>
           ))}
         </div>
       </header>
 
-      {/* Home Screen */}
-      {screen === "home" && (
-          {/* Home Screen */}
+      {/* Home */}
       {screen === "home" && (
         <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
-          {homeButtons.map((b) => (
-            <button
-              key={b.screen}
-              onClick={() => {
-                setScreen(b.screen);
-                setCurrentStep(0);
-                setSlide(0);
-              }}
-              className="bg-white rounded-3xl p-8 shadow-2xl hover:scale-105 transition home-button flex flex-col items-center justify-center"
-            >
-              <img src={`/icons/${b.icon}`} className="force-big mb-6" alt="" />
+          {homeButtons.map(b => (
+            <button key={b.screen} onClick={() => { setScreen(b.screen); setCurrentStep(0); setSlide(0); }}
+              className="bg-white rounded-3xl p-8 shadow-2xl hover:scale-105 transition home-btn flex flex-col items-center justify-center">
+              <img src={`/icons/${b.icon}`} className="big mb-6" alt="" />
               <p className="text-2xl font-bold text-black text-center">{b.label}</p>
             </button>
-          ))}
-        </div>
-      )}
-        <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
-          {homeButtons.map((b) => (
-            <button
-  key={b.screen}
-  onClick={() => { setScreen(b.screen); setCurrentStep(0); setSlide(0); }}
-  className="bg-white rounded-3xl p-8 shadow-2xl hover:scale-105 transition home-button flex flex-col items-center justify-center"
->
-              <img src={`/icons/${b.icon}`} className="force-big mb-6" alt="" />
-              <p className="text-2xl font-bold text-black text-center">{b.label}</p>
-            </button>
-          ))}
-        </div>
-      )}
           ))}
         </div>
       )}
 
-      {/* Mass Schedule Screen */}
+      {/* Mass Schedule */}
       {screen === "schedule" && (
         <div className="max-w-3xl mx-auto mt-12 text-center">
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
-            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
+            ← {t("Home")}
           </button>
-          <div className="bg-white rounded-3xl p-12 shadow-2xl min-h-[400px] flex flex-col items-center justify-center">
-            <img src={`/icons/${massSteps[currentStep].icon}`} className="force-big mb-8" alt="" />
-            <h2 className="text-4xl font-bold text-black mb-12">{massSteps[currentStep].name}</h2>
+          <div className="bg-white rounded-3xl p-12 shadow-2xl">
+            <img src={`/icons/${massSteps[currentStep].icon}`} className="big mx-auto mb-8" alt="" />
+            <h2 className="text-4xl font-bold text-black mb-12">{t(massSteps[currentStep].en)}</h2>
             {currentStep < massSteps.length - 1 ? (
-              <button
-                onClick={() => setCurrentStep((s) => s + 1)}
-                className="bg-green-500 text-white px-16 py-8 rounded-full text-4xl shadow-lg"
-              >
-                {t("Next →", "Siguiente →", "Suivant →", "Próximo →", "下一个 →", "下一個 →")}
+              <button onClick={() => setCurrentStep(s => s + 1)}
+                className="bg-green-500 text-white px-16 py-8 rounded-full text-4xl shadow-lg">
+                {t("Next →")}
               </button>
             ) : (
-              <button
-                onClick={() => setScreen("home")}
-                className="bg-purple-600 text-white px-16 py-8 rounded-full text-4xl shadow-lg"
-              >
-                {t("All Done!", "¡Terminamos!", "C'est fini !", "Tudo pronto!", "完成了！", "完成咗！")}
+              <button onClick={() => setScreen("home")}
+                className="bg-purple-600 text-white px-16 py-8 rounded-full text-4xl shadow-lg">
+                {t("All Done!")}
               </button>
             )}
           </div>
         </div>
       )}
 
-      {/* AAC Screen */}
+      {/* AAC */}
       {screen === "aac" && (
         <div className="max-w-5xl mx-auto mt-12">
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
-            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
+            ← {t("Home")}
           </button>
           <div className="grid grid-cols-4 gap-6">
-            {aacWords.map((w, i) => {
-              const filename =
-                w.en === "all done" ? "alldone" :
-                w.en === "thank you" ? "thankyou" :
-                w.en === "i love you" ? "iloveyou" :
-                w.en === "too loud" ? "tooloud" :
-                w.en;
-
-              return (
-                <button
-                  key={i}
-                  className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center justify-between min-h-48"
-                >
-                  <img
-                    src={`/icons/${filename}.png`}
-                    className="force-big mb-3"
-                    alt={w.en}
-                  />
-                  <span className="text-xl font-bold text-black mt-auto text-center px-2">
-                    {w[lang] || w.en}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Calm Down Screen */}
-      {screen === "calm" && (
-        <div className="text-center mt-20 min-h-screen flex flex-col items-center justify-center">
-          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline absolute top-4 left-4">
-            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
-          </button>
-          <img src="/icons/dragon.gif" className="force-big mt-8 mb-8" alt="Breathing dragon" />
-          <p className="text-4xl font-bold text-white max-w-md">
-            {t("Breathe in… hold… breathe out", "Inhala… retén… exhala", "Inspire… retiens… expire", "Inspire… segure… expire", "吸气…屏住…呼气", "吸氣…屏住…呼氣")}
-          </p>
-        </div>
-      )}
-
-      {/* Mass Story Screen */}
-      {screen === "story" && (
-        <div className="max-w-2xl mx-auto mt-12 text-center">
-          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
-            ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
-          </button>
-          <img src={`/icons/slide${slide + 1}.png`} className="force-big rounded-3xl shadow-2xl" alt="Story slide" />
-          <div className="flex justify-center gap-4 mt-8">
-            {[0,1,2,3,4,5].map((i) => (
-              <button
-                key={i}
-                onClick={() => setSlide(i)}
-                className={`w-4 h-4 rounded-full ${i === slide ? "bg-white" : "bg-white/50"}`}
-              />
+            {aacWords.map((w, i) => (
+              <button key={i}
+                className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center justify-between min-h-48">
+                <img src={`/icons/${filename(w.en)}.png`} className="big mb-4" alt={w.en} />
+                <span className="text-xl font-bold text-black text-center px-2">
+                  {w[lang] || w.en}
+                </span>
+              </button>
             ))}
           </div>
         </div>
       )}
 
-      <footer className="text-center text-white mt-20 text-lg opacity-80">
-        Made with love by Kelly Kroeper · UX Researcher
-      </footer>
+      {/* Calm Down */}
+      {screen === "calm" && (
+        <div className="text-center mt-20 min-h-screen flex flex-col items-center justify-center">
+          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline absolute top-8 left-4">
+            ← {t("Home")}
+          </button>
+          <img src="/icons/dragon.gif" className="big mt-8" alt="Breathing dragon" />
+          <p className="text-4xl font-bold text-white mt-12">
+            {t("Breathe in… hold… breathe out", "Inhala… retén… exhala", "Inspire… retiens… expire", "Inspire… segure… expire", "吸气…屏住…呼气", "吸氣…屏住…呼氣")}
+          </p>
+        </div>
+      )}
+
+      {/* Story */}
+      {screen === "story" && (
+        <div className="max-w-2xl mx-auto mt-12 text-center">
+          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
+            ← {t("Home")}
+          </button>
+          <img src={`/icons/slide${slide + 1}.png`} className="big rounded-3xl shadow-2xl mx-auto" alt="Story" />
+          <div className="flex justify-center gap-4 mt-8">
+            {[0,1,2,3,4,5].map(i => (
+              <button key={i} onClick={() => setSlide(i)}
+                className={`w-4 h-4 rounded-full transition ${i === slide ? "bg-white" : "bg-white/50"}`} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

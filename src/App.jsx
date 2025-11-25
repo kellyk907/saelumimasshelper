@@ -6,29 +6,17 @@ export default function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [slide, setSlide] = useState(0);
 
-  const t = (en, es = en, fr = en, pt = en, zh = en, yue = en) => {
-    const map = { en, es, fr, pt, zh, yue };
-    return map[lang] || en;
-  };
-
-  const homeButtons = [
-    { screen: "schedule", label: t("Mass Schedule"), icon: "schedule.png" },
-    { screen: "aac", label: t("I Need…"), icon: "aac.png" },
-    { screen: "calm", label: t("Calm Down"), icon: "dragon.png" },
-    { screen: "story", label: t("Our Mass Story"), icon: "story.png" },
+  const steps = [
+    "We arrive at church", "Sign of the Cross", "Readings", "Homily",
+    "Offertory", "Consecration", "Communion", "Go in peace!"
   ];
 
-  const massSteps = [
+  const icons = [
     "church.png", "cross.png", "book.png", "priest.png",
     "bread.png", "chalice.png", "host.png", "peace.png"
   ];
 
-  const aacWords = [
-    "bathroom","water","break","quiet","hug","fidget","headphones","sit",
-    "stand","help","all done","more","snack","thank you","please","stop",
-    "i love you","too loud","yes","no"
-  ];
-
+  const aacWords = ["bathroom","water","break","quiet","hug","fidget","headphones","sit","stand","help","all done","more","snack","thank you","please","stop","i love you","too loud","yes","no"];
   const filename = w => w==="all done"?"alldone":w==="thank you"?"thankyou":w==="i love you"?"iloveyou":w==="too loud"?"tooloud":w;
 
   return (
@@ -37,18 +25,16 @@ export default function App() {
         @media(min-width:640px){.big img{min-width:280px}}
         @media(min-width:1024px){.big img{min-width:340px}}`}</style>
 
-      <h1 className="text-5xl font-bold text-black text-center my-8 drop-shadow-lg">
-        Lumi's Mass Helper
-      </h1>
+      <h1 className="text-5xl font-bold text-white text-center my-8 drop-shadow-lg">Lumi's Mass Helper</h1>
 
       {/* HOME */}
       {screen === "home" && (
         <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {homeButtons.map(b => (
-            <button key={b.screen} onClick={() => {setScreen(b.screen); setCurrentStep(0); setSlide(0);}}
+          {["schedule.png","aac.png","dragon.png","story.png"].map((icon, i) => (
+            <button key={i} onClick={() => {setScreen(["schedule","aac","calm","story"][i]); setCurrentStep(0); setSlide(0);}}
               className="bg-white rounded-3xl p-8 shadow-2xl hover:scale-105 transition flex flex-col items-center min-h-64">
-              <img src={`/icons/${b.icon}`} className="big mb-6" alt="" />
-              <p className="text-2xl font-bold text-black">{b.label}</p>
+              <img src={`/icons/${icon}`} className="big mb-6" alt="" />
+              <p className="text-2xl font-bold text-black">{"Mass Schedule,I Need…,Calm Down,Our Mass Story".split(",")[i]}</p>
             </button>
           ))}
         </div>
@@ -57,21 +43,16 @@ export default function App() {
       {/* MASS SCHEDULE */}
       {screen === "schedule" && (
         <div className="max-w-3xl mx-auto text-center">
-          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline">
-            ← Home
-          </button>
+          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline text-black">← Home</button>
           <div className="bg-white rounded-3xl p-12 shadow-2xl">
-            <img src={`/icons/${massSteps[currentStep]}`} className="big mx-auto mb-8" alt="" />
-            {currentStep < massSteps.length - 1 ? (
+            <img src={`/icons/${icons[currentStep]}`} className="big mx-auto mb-8" alt="" />
+            <h2 className="text-4xl font-bold text-black mb-12">{steps[currentStep]}</h2>
+            {currentStep < 7 ? (
               <button onClick={() => setCurrentStep(s => s + 1)}
-                className="bg-green-500 text-black px-16 py-8 rounded-full text-4xl shadow-lg">
-                Next →
-              </button>
+                className="bg-green-500 text-white px-16 py-8 rounded-full text-4xl shadow-lg">Next →</button>
             ) : (
               <button onClick={() => setScreen("home")}
-                className="bg-purple-600 text-black px-16 py-8 rounded-full text-4xl shadow-lg">
-                All Done!
-              </button>
+                className="bg-purple-600 text-white px-16 py-8 rounded-full text-4xl shadow-lg">All Done!</button>
             )}
           </div>
         </div>
@@ -80,14 +61,12 @@ export default function App() {
       {/* AAC */}
       {screen === "aac" && (
         <div className="max-w-5xl mx-auto">
-          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline">
-            ← Home
-          </button>
+          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline text-black">← Home</button>
           <div className="grid grid-cols-4 gap-6">
             {aacWords.map((w, i) => (
               <button key={i} className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center min-h-48">
                 <img src={`/icons/${filename(w)}.png`} className="big mb-4" alt={w} />
-                <span className="text-xl font-bold text-black">{w}</span>
+                <span className="text-xl font-bold text-black">{w.replace("i love","I love").replace("too loud","too loud")}</span>
               </button>
             ))}
           </div>
@@ -96,22 +75,18 @@ export default function App() {
 
       {/* CALM DOWN */}
       {screen === "calm" && (
-        <div className="text-center mt-20">
-          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline">
-            ← Home
-          </button>
-          <img src="/icons/dragon.gif" className="big mx-auto" alt="Breathe" />
-          <p className="text-4xl font-bold text-black mt-8">Breathe in… hold… breathe out</p>
+        <div className="text-center mt-20 min-h-screen flex flex-col items-center justify-center">
+          <button onClick={() => setScreen("home")} className="absolute top-8 left-6 text-3xl font-bold underline text-black">← Home</button>
+          <img src="/icons/dragon.gif" className="big mt-8" alt="Breathing dragon" />
+          <p className="text-4xl font-bold text-white mt-12 drop-shadow-lg">Breathe in… hold… breathe out</p>
         </div>
       )}
 
       {/* STORY */}
       {screen === "story" && (
         <div className="max-w-2xl mx-auto text-center">
-          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline">
-            ← Home
-          </button>
-          <img src={`/icons/slide${slide + 1}.png`} className="big rounded-3xl shadow-2xl mx-auto" alt="Story" />
+          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline text-black">← Home</button>
+          <img src={`/icons/slide${slide + 1}.png`} className="big rounded-3xl shadow-2xl" alt="Story" />
           <div className="flex justify-center gap-4 mt-8">
             {[0,1,2,3,4,5].map(i => (
               <button key={i} onClick={() => setSlide(i)}

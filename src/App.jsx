@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useState } from "react";
 
 export default function App() {
@@ -63,34 +64,34 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-100 to-blue-200 p-6 pb-24">
-    <style>{`
-  .force-big img {
-    min-width: 220px !important;
-    min-height: 220px !important;
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-  }
-  @media (min-width: 640px) {
-    .force-big img { min-width: 280px !important; min-height: 280px !important; }
-  }
-  @media (min-width: 1024px) {
-    .force-big img { min-width: 340px !important; min-height: 340px !important; }
-  }
-  /* Fix home screen stretching */
-  .home-button { min-height: 280px; }
-  @media (max-width: 640px) { .home-button { min-height: 220px; } }
-`}</style>
+      <style>{`
+        .force-big img {
+          min-width: 220px !important;
+          min-height: 220px !important;
+          width: 100% !important;
+          height: auto !important;
+          object-fit: contain !important;
+        }
+        @media (min-width: 640px) {
+          .force-big img { min-width: 280px !important; min-height: 280px !important; }
+        }
+        @media (min-width: 1024px) {
+          .force-big img { min-width: 340px !important; min-height: 340px !important; }
+        }
+        .home-button { min-height: 280px; }
+        @media (max-width: 640px) { .home-button { min-height: 220px; } }
+      `}</style>
+
       {/* Header */}
       <header className="text-center py-6">
-        <h1 className="text-5xl font-bold text-black drop-shadow-2xl mb-6">Lumi's Mass Helper</h1>
+        <h1 className="text-5xl font-bold text-white drop-shadow-2xl mb-6">Lumi's Mass Helper</h1>
         <div className="flex flex-wrap justify-center gap-3">
           {languages.map((l) => (
             <button
               key={l.code}
               onClick={() => setLang(l.code)}
               className={`px-5 py-2 rounded-full text-lg font-medium transition ${
-                lang === l.code ? "bg-white text-purple-700 shadow-lg" : "bg-white/40 text-black"
+                lang === l.code ? "bg-white text-purple-700 shadow-lg" : "bg-white/40 text-white"
               }`}
             >
               {l.name}
@@ -110,15 +111,11 @@ export default function App() {
                 setCurrentStep(0);
                 setSlide(0);
               }}
-              className="bg-white rounded-3xl p-10 shadow-2xl hover:scale-105 transition"
+              className="bg-white rounded-3xl p-8 shadow-2xl hover:scale-105 transition home-button flex flex-col items-center justify-center"
             >
-         <img src={`/icons/${b.icon}`} className="w-64 h-64 max-w-full object-contain mx-auto mb-6" alt="" />
-              <p className="text-2xl font-bold text-black">{b.label}</p>
+              <img src={`/icons/${b.icon}`} className="force-big mb-6" alt="" />
+              <p className="text-2xl font-bold text-black text-center">{b.label}</p>
             </button>
-          <button
-  key={b.screen}
-  className="bg-white rounded-3xl p-8 shadow-2xl hover:scale-105 transition home-button"
->
           ))}
         </div>
       )}
@@ -129,20 +126,20 @@ export default function App() {
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
-          <div className="bg-white rounded-3xl p-12 shadow-2xl">
-     <img src={`/icons/${massSteps[currentStep].icon}`} className="w-80 h-80 max-w-lg object-contain mx-auto mb-8" alt="" />
+          <div className="bg-white rounded-3xl p-12 shadow-2xl min-h-[400px] flex flex-col items-center justify-center">
+            <img src={`/icons/${massSteps[currentStep].icon}`} className="force-big mb-8" alt="" />
             <h2 className="text-4xl font-bold text-black mb-12">{massSteps[currentStep].name}</h2>
             {currentStep < massSteps.length - 1 ? (
               <button
                 onClick={() => setCurrentStep((s) => s + 1)}
-                className="bg-green-500 text-black px-16 py-8 rounded-full text-4xl shadow-lg"
+                className="bg-green-500 text-white px-16 py-8 rounded-full text-4xl shadow-lg"
               >
                 {t("Next →", "Siguiente →", "Suivant →", "Próximo →", "下一个 →", "下一個 →")}
               </button>
             ) : (
               <button
                 onClick={() => setScreen("home")}
-                className="bg-purple-600 text-black px-16 py-8 rounded-full text-4xl shadow-lg"
+                className="bg-purple-600 text-white px-16 py-8 rounded-full text-4xl shadow-lg"
               >
                 {t("All Done!", "¡Terminamos!", "C'est fini !", "Tudo pronto!", "完成了！", "完成咗！")}
               </button>
@@ -152,7 +149,7 @@ export default function App() {
       )}
 
       {/* AAC Screen */}
- {screen === "aac" && (
+      {screen === "aac" && (
         <div className="max-w-5xl mx-auto mt-12">
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
@@ -167,13 +164,16 @@ export default function App() {
                 w.en;
 
               return (
-                <button key={i} className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center justify-between min-h-48">
+                <button
+                  key={i}
+                  className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center justify-between min-h-48"
+                >
                   <img
                     src={`/icons/${filename}.png`}
-                    className="force-big object-contain mb-4"
+                    className="force-big mb-3"
                     alt={w.en}
                   />
-                  <span className="text-xl font-bold text-black mt-auto">
+                  <span className="text-xl font-bold text-black mt-auto text-center px-2">
                     {w[lang] || w.en}
                   </span>
                 </button>
@@ -185,29 +185,24 @@ export default function App() {
 
       {/* Calm Down Screen */}
       {screen === "calm" && (
-        <div className="text-center mt-20">
-          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
+        <div className="text-center mt-20 min-h-screen flex flex-col items-center justify-center">
+          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline absolute top-4 left-4">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
-         <img src="/icons/dragon.gif" className="w-72 h-72 max-w-md object-contain mx-auto mt-8" alt="Breathing dragon" />
-          <p className="text-5xl font-bold text-black mt-10">
+          <img src="/icons/dragon.gif" className="force-big mt-8 mb-8" alt="Breathing dragon" />
+          <p className="text-4xl font-bold text-white max-w-md">
             {t("Breathe in… hold… breathe out", "Inhala… retén… exhala", "Inspire… retiens… expire", "Inspire… segure… expire", "吸气…屏住…呼气", "吸氣…屏住…呼氣")}
           </p>
         </div>
       )}
 
-      {/* Mass Story Screen need to make and add images for this from saelumi  */}
+      {/* Mass Story Screen */}
       {screen === "story" && (
         <div className="max-w-2xl mx-auto mt-12 text-center">
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold text-black underline">
             ← {t("Home", "Inicio", "Accueil", "Início", "主页", "主頁")}
           </button>
-          <img src={`/icons/${b.icon}`} className="huge-icon" alt="" />
-         <img 
-  src={`/icons/${massSteps[currentStep].icon}`} 
-  className="w-96 h-96 object-contain mx-auto mb-8" 
-  alt="" 
-/>
+          <img src={`/icons/slide${slide + 1}.png`} className="force-big rounded-3xl shadow-2xl" alt="Story slide" />
           <div className="flex justify-center gap-4 mt-8">
             {[0,1,2,3,4,5].map((i) => (
               <button
@@ -220,7 +215,7 @@ export default function App() {
         </div>
       )}
 
-      <footer className="text-center text-black mt-20 text-lg opacity-80">
+      <footer className="text-center text-white mt-20 text-lg opacity-80">
         Made with love by Kelly Kroeper · UX Researcher
       </footer>
     </div>

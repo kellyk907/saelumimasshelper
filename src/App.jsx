@@ -93,6 +93,9 @@ export default function App() {
       {/* Home */}
       {screen === "home" && (
         <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
+              {/* Home Screen */}
+      {screen === "home" && (
+        <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
           {homeButtons.map(b => (
             <button key={b.screen} onClick={() => { setScreen(b.screen); setCurrentStep(0); setSlide(0); }}
               className="bg-white rounded-3xl p-8 shadow-2xl hover:scale-105 transition home-btn flex flex-col items-center justify-center">

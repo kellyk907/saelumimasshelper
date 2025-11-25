@@ -58,27 +58,26 @@ export default function App() {
         </div>
       )}
 
-      {/* AAC */}
-      {/* AAC — PERFECT ON MOBILE */}
+        {/* AAC — HUGE PICS ON EVERY DEVICE */}
       {screen === "aac" && (
         <div className="max-w-5xl mx-auto px-4">
           <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline text-black">
             ← Home
           </button>
 
-          {/* Mobile: 3 columns, Tablet/Desktop: 5 columns */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-6">
             {aacWords.map((w, i) => (
               <button
                 key={i}
-                className="bg-white rounded-3xl p-4 shadow-xl hover:scale-105 transition flex flex-col items-center justify-between min-h-44"
+                className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center justify-center aspect-square"
               >
+                {/* THIS IS THE MAGIC LINE — forces images to be huge */}
                 <img
                   src={`/icons/${filename(w)}.png`}
-                  className="big mb-3 max-w-full h-auto"
+                  className="w-full max-w-none h-full object-contain px-4"
                   alt={w}
                 />
-                <span className="text-lg font-bold text-black text-center leading-tight px-2">
+                <span className="absolute bottom-4 text-lg font-bold text-black text-center px-2">
                   {w.replace("i love", "I love").replace("too loud", "too loud")}
                 </span>
               </button>

@@ -104,6 +104,10 @@ export default function App() {
       {screen === "home" && (
         <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
           {homeButtons.map((b) => (
+           {/* Home Screen */}
+      {screen === "home" && (
+        <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
+          {homeButtons.map((b) => (
             <button
               key={b.screen}
               onClick={() => {
@@ -116,6 +120,9 @@ export default function App() {
               <img src={`/icons/${b.icon}`} className="force-big mb-6" alt="" />
               <p className="text-2xl font-bold text-black text-center">{b.label}</p>
             </button>
+          ))}
+        </div>
+      )}
           ))}
         </div>
       )}

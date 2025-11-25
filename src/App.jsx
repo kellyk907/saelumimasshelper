@@ -63,21 +63,24 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-100 to-blue-200 p-6 pb-24">
-     <style>{`
-      .force-big img { 
-        min-width: 280px !important; 
-        min-height: 280px !important; 
-        width: auto !important; 
-        height: auto !important; 
-        object-fit: contain !important; 
-      }
-      @media (min-width: 640px) { 
-        .force-big img { 
-          min-width: 340px !important; 
-          min-height: 340px !important; 
-        } 
-      }
-    `}</style>
+    <style>{`
+  .force-big img {
+    min-width: 220px !important;
+    min-height: 220px !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+  @media (min-width: 640px) {
+    .force-big img { min-width: 280px !important; min-height: 280px !important; }
+  }
+  @media (min-width: 1024px) {
+    .force-big img { min-width: 340px !important; min-height: 340px !important; }
+  }
+  /* Fix home screen stretching */
+  .home-button { min-height: 280px; }
+  @media (max-width: 640px) { .home-button { min-height: 220px; } }
+`}</style>
       {/* Header */}
       <header className="text-center py-6">
         <h1 className="text-5xl font-bold text-black drop-shadow-2xl mb-6">Lumi's Mass Helper</h1>
@@ -112,6 +115,10 @@ export default function App() {
          <img src={`/icons/${b.icon}`} className="w-64 h-64 max-w-full object-contain mx-auto mb-6" alt="" />
               <p className="text-2xl font-bold text-black">{b.label}</p>
             </button>
+          <button
+  key={b.screen}
+  className="bg-white rounded-3xl p-8 shadow-2xl hover:scale-105 transition home-button"
+>
           ))}
         </div>
       )}

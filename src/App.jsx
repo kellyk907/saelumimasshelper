@@ -59,20 +59,33 @@ export default function App() {
       )}
 
       {/* AAC */}
+      {/* AAC — PERFECT ON MOBILE */}
       {screen === "aac" && (
-        <div className="max-w-5xl mx-auto">
-          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline text-black">← Home</button>
-          <div className="grid grid-cols-4 gap-6">
+        <div className="max-w-5xl mx-auto px-4">
+          <button onClick={() => setScreen("home")} className="mb-8 text-3xl font-bold underline text-black">
+            ← Home
+          </button>
+
+          {/* Mobile: 3 columns, Tablet/Desktop: 5 columns */}
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-5">
             {aacWords.map((w, i) => (
-              <button key={i} className="bg-white rounded-3xl p-6 shadow-xl hover:scale-105 transition flex flex-col items-center min-h-48">
-                <img src={`/icons/${filename(w)}.png`} className="big mb-4" alt={w} />
-                <span className="text-xl font-bold text-black">{w.replace("i love","I love").replace("too loud","too loud")}</span>
+              <button
+                key={i}
+                className="bg-white rounded-3xl p-4 shadow-xl hover:scale-105 transition flex flex-col items-center justify-between min-h-44"
+              >
+                <img
+                  src={`/icons/${filename(w)}.png`}
+                  className="big mb-3 max-w-full h-auto"
+                  alt={w}
+                />
+                <span className="text-lg font-bold text-black text-center leading-tight px-2">
+                  {w.replace("i love", "I love").replace("too loud", "too loud")}
+                </span>
               </button>
             ))}
           </div>
         </div>
       )}
-
       {/* CALM DOWN */}
       {screen === "calm" && (
         <div className="text-center mt-20 min-h-screen flex flex-col items-center justify-center">
